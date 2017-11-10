@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block page_content %}
+<div id="wrapper" class="jumbotron" style="padding: 1%;margin: 1%;border-radius: 10px;">
+    <form method="POST" action="/producto">
+        {{ form.csrf_token }}
+        <fieldset>
+            <legend class="legend">
+                <h4>Clientes que comparon un producto</h4>
+            </legend>
+            <div class="col-md-12" align="left">
+                {% if msj == "ok" %}
+                <h4> <span class="label label-warning">Verifique login</span> </h4>
+                {% elif msj == " " %}
+                <h4> <span class="label label-warning">Usuario no encontrado</span> </h4>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                {{form.producto(class="form-control", placeholder="Nombre del producto...")}}
+                                <span class="input-group-btn">{{form.submit(class="btn btn-clientes")}}</span>
+                            </div>
+                            {% for message in form.producto.errors %}
+                            <span style="color:goldenrod;"> {{ message }} </span> {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    {% if ff %}
+    <form method="POST" action="/mostrar">
+        <br>
+        <h4>Seleccione un Producto</h4>
+        {% for l in lista %}
+        <div class="radio">
+            <label style="font-size:14px"><input type="radio" name="selecc" value="{{l}}">{{l}}</label>
+        </div>
+        {% endfor %}
+        <br>
+        <br> {{form.submit_selec(class="btn btn-clientes")}}
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

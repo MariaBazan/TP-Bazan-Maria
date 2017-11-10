@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block page_content %}
+
+<div id="wrapper" class="jumbotron" style="padding: 1%;margin: 1%;border-radius: 10px;">
+    <form method="POST" action="/registro">
+        {{ form.csrf_token }}
+        <fieldset>
+            <legend class="legend">
+                <h4>Registro</h4>
+            </legend>
+            <div class="col-md-12" align="left">
+                {% if msj == "ok" %}
+                <h3> <span class="label label-success">Registro exitoso</span> </h3>
+                {% elif msj == "usu" %}
+                <h3> <span class="label label-warning">Los usuarios no coinciden</span> </h3>
+                {% elif msj == "reg" %}
+                <h3> <span class="label label-info">El usuario se encuentra registrado</span> </h3>
+                {% elif msj == "pass" %}
+                <h3> <span class="label label-warning">Las contraseñas no coinciden</span> </h3>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label class="control-label">{{ form.usu.label }}</label> {{ form.usu(class="form-control" ) }} {% for message in form.usu.errors %}
+                    <span style="color:rgb(32, 75, 218);"> {{ message }} </span> {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label class="control-label">{{ form.usu1.label }}</label> {{ form.usu1(class="form-control" ) }} {% for message in form.usu1.errors %}
+                    <span style="color:rgb(32, 75, 218);"> {{ message }} </span> {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label class="control-label">{{ form.passw.label }}</label> {{ form.passw(class="form-control" ) }} {% for message in form.passw.errors %}
+                    <span style="color:rgb(32, 75, 218);"> {{ message }} </span> {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label class="control-label">{{ form.passw1.label }}</label> {{ form.passw1(class="form-control" ) }} {% for message in form.passw1.errors %}
+                    <span style="color:rgb(32, 75, 218);"> {{ message }} </span> {% endfor %}
+                    <br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {{ form.submit(class="btn btn-lg btn-block")}}
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+{% endblock %}

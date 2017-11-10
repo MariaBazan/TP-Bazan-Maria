@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block page_content %}
+<div id="wrapper" class="jumbotron" style="padding: 1%;margin: 1%;border-radius: 10px;">
+    <form method="POST" action="/cliente">
+        {{ form.csrf_token }}
+        <fieldset>
+            <legend class="legend">
+                <h4>Productos que compro un Cliente</h4>
+            </legend>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                {{form.cliente(class="form-control", placeholder="Nombre del cliente...")}}
+                                <span class="input-group-btn">{{form.submit(class="btn btn-clientes")}}</span>
+                            </div>
+                            {% for message in form.cliente.errors %}
+                            <p style="color:rgb(32, 75, 218);"> {{ message }} </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    {% if ff %}
+    <form method="POST" action="/mostrar">
+        <br>
+        <h4>Seleccione un Cliente</h4>
+        {% for l in lista %}
+        <div class="radio">
+            <label style="font-size:14px"><input type="radio" name="selecc" value="{{l}}">{{l}}</label>
+        </div>
+        {% endfor %}
+        <br>
+        <br> {{form.submit_selec(class="btn btn-clientes")}} {% else %}
+        <p style="color:rgb(32, 75, 218); text-align:left; margin-left:15px;"> {{ msg }} </p>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

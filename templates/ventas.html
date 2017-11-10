@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block page_content %}
+
+<div id="wrapper" class="container">
+    <h2>Bienvenido Sr/Sra {{usuario}}</h2>
+    <br>
+    <h4>Clientes</h4>
+    <hr>
+    <br>
+    <div class="col-md-12 jumbotron" align="left" style="padding: 1%;margin: 1%;border-radius: 10px;">
+        {% if ff %}
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Cliente</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Producto</th>
+                </tr>
+                {% for cl in clientes %}
+                <tr>
+                    <td>{{ cl["CODIGO"]}}</td>
+                    <td>{{ cl["CLIENTE"] }}</td>
+                    <td>{{ cl["CANTIDAD"] }}</td>
+                    <td>{{ cl["PRECIO"] }}</td>
+                    <td>{{ cl["PRODUCTO"] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <p>
+            {{ msg }}
+        </p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

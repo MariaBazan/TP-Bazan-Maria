@@ -1,0 +1,16 @@
+{% extends "bootstrap/base.html" %} {% block head %} {{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.png') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename = 'favicon.png') }}" type="image/x-icon">
+<div class="jumbotron" style="padding: 1%;margin: 1%;border-radius: 10px;">
+    {% if 'admin' == session['nombre'] %}
+    <button onclick="window.location.href='/users'">Usuarios</button>
+    <button onclick="window.location.href='/ventas'">Ultimas ventas</button>
+    <button onclick="window.location.href='/cliente'">Producto por Cliente</button>
+    <button onclick="window.location.href='/producto'">Cliente por Producto</button>
+    <button onclick="window.location.href='/mejores_clientes'">Mejores Clientes</button>
+    <button onclick="window.location.href='/mas_vendidos'">Productos más vendidos</button> {% elif 'nombre' not in session %}
+    <button onclick="window.location.href='/registro'">Registro</button>
+    <button onclick="window.location.href='/login'">Ingresar</button> {% endif %} {% if 'nombre' in session %}
+    <button onclick="window.location.href='/logout'">Salir</button> {% endif %}
+</div>
+{% endblock %} {% block content %} {% block page_content %} {% endblock %} {% endblock %} {% block scripts %} {{ super() }} {% endblock %}

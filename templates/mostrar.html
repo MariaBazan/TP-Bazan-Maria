@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block page_content %}
+<div id="wrapper" class="jumbotron" style="padding: 1%;margin: 1%;border-radius: 10px;">
+    <form method="POST" action="/mostrar">
+        <h4>{{msg}}</h4>
+        <hr>
+        <br>
+        <h3 class="titulo-consulta">{{msg2}}</h3>
+        <div class="form-group">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Cliente</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Producto</th>
+                    </tr>
+                    {% for l2 in lista %}
+                    <tr>
+                        <td>{{ l2["CODIGO"]}}</td>
+                        <td>{{ l2["CLIENTE"] }}</td>
+                        <td>{{ l2["CANTIDAD"] }}</td>
+                        <td>{{ l2["PRECIO"] }}</td>
+                        <td>{{ l2["PRODUCTO"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </form>
+    {% if msg3=="cliente" %}
+    <form method="GET" action="/cliente">
+        <input type="submit" value="Volver" class="btn btn-clientes" onClick="window.location.reload()">
+    </form>
+    {% elif msg3=="producto" %}
+    <form method="GET" action="/producto">
+        <input type="submit" value="Volver" class="btn btn-clientes" onClick="window.location.reload()">
+    </form>
+
+    {% endif %}
+</div>
+{% endblock %} }
